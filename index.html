@@ -2,26 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="https://quizgenerator.net/quizgen5.4.2/basic/css/jquery-ui-1.12.1.min.css" />
-<script type="text/javascript" src="https://quizgenerator.net/quizgen5.4.2/basic/js/jquery.js"></script>
-<script type="text/javascript" src="https://quizgenerator.net/quizgen5.4.2/basic/js/jquery.plugin.min.js"></script>
-<script type="text/javascript" src="https://quizgenerator.net/quizgen5.4.2/basic/js/jquery.countdown.min.js"></script>
-<script type="text/javascript" src="https://quizgenerator.net/quizgen5.4.2/basic/js/scrollbarTable-0.1.min.js"></script>
+<link rel="stylesheet" href="https://quizgenerator.net/quizgen5.6.8/basic/css/jquery-ui-1.12.1.min.css" />
+<script type="text/javascript" src="https://quizgenerator.net/quizgen5.6.8/basic/js/jquery.js"></script>
+<script type="text/javascript" src="https://quizgenerator.net/quizgen5.6.8/basic/js/jquery.plugin.min.js"></script>
+<script type="text/javascript" src="https://quizgenerator.net/quizgen5.6.8/basic/js/jquery.countdown.min.js"></script>
+<script type="text/javascript" src="https://quizgenerator.net/quizgen5.6.8/basic/js/scrollbarTable-0.1.min.js"></script>
 <script type="text/javascript" src="js/player.js"></script>
 <script type="text/javascript" src="config.js"></script>
-<script src="https://quizgenerator.net/quizgen5.4.2/basic/js/jquery-ui.1.12.0.min.js"></script>
-<script src="https://quizgenerator.net/quizgen5.4.2/basic/js/jquery.ui.touch-punch.min.js"></script>
+<script src="https://quizgenerator.net/quizgen5.6.8/basic/js/jquery-ui.1.12.0.min.js"></script>
+<script src="https://quizgenerator.net/quizgen5.6.8/basic/js/jquery.ui.touch-punch.min.js"></script>
 <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [['[#','#]']]}});</script>
 <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML"></script>
-<link rel="stylesheet" href="https://quizgenerator.net/quizgen5.4.2/basic/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="https://quizgenerator.net/quizgen5.4.2/basic/photoswipe/default-skin/default-skin.css">
-<script src="https://quizgenerator.net/quizgen5.4.2/basic/photoswipe/photoswipe.js"></script>
-<script src="https://quizgenerator.net/quizgen5.4.2/basic/photoswipe/photoswipe-ui-default.min.js"></script>
+<link rel="stylesheet" href="https://quizgenerator.net/quizgen5.6.8/basic/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="https://quizgenerator.net/quizgen5.6.8/basic/photoswipe/default-skin/default-skin.css">
+<script src="https://quizgenerator.net/quizgen5.6.8/basic/photoswipe/photoswipe.js"></script>
+<script src="https://quizgenerator.net/quizgen5.6.8/basic/photoswipe/photoswipe-ui-default.min.js"></script>
 
-<script src="https://quizgenerator.net/quizgen5.4.2/basic/js/popper.min.js"></script>
-<script src="https://quizgenerator.net/quizgen5.4.2/basic/js/bootstrap.js"></script>
-<link rel="stylesheet" type="text/css" href="https://quizgenerator.net/quizgen5.4.2/basic/css/bootstrap.css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://quizgenerator.net/quizgen5.6.8/basic/js/popper.min.js"></script>
+<script src="https://quizgenerator.net/quizgen5.6.8/basic/js/bootstrap.js"></script>
+<link rel="stylesheet" type="text/css" href="https://quizgenerator.net/quizgen5.6.8/basic/css/bootstrap.css">
+<link href="https://quizgenerator.net/quizgen5.6.8/basic/font-awesome/css/all.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 
 
 
@@ -50,7 +52,7 @@
 
 <script>
 $(function () {
-$('[data-toggle="tooltip"]').tooltip()
+$('[data-toggle="tooltip"]').tooltip();
 drawGraph();
 })
 </script>
@@ -64,7 +66,10 @@ Loading...
 </div><!-- / page_loading -->
 <div class="page container minh-100 card" id="page_intro" style="display:none">
 <section class="row card-body align-items-center">
-<div class="col-12" id="intro_wrapper">
+<div id="intro_wrapper" class="col-12">
+<div id="stamp" class="text-right">
+<i class="fas fa-award fa-6x"></i>
+</div>
 <big>
 <div id="intro_background" class="size_adjust text-center"></div>
 <div id="intro" class="size_adjust text-center"></div>
@@ -100,47 +105,54 @@ $("#completion_rate_label_wrapper").height($("#doughnutChart").height() - margin
 <div class="col-12">
 <button id="restart_quiz_button" class="size_adjust btn btn-primary btn-block btn-rounded waves-effect waves-light" onclick="start_quiz()" style="display:none">最初からやり直す</button>
 </div>
-<div class="col-6">
+<div class="col-6" data-toggle="tooltip" title="すでに攻略済みです">
 <button id="start_quiz_button_not_answerd" class="size_adjust btn btn-success btn-block btn-rounded waves-effect waves-light" onclick="start_quiz('not_answerd')">攻略開始</button>
 </div>
-<div class="col-6">
+<div class="col-6" data-toggle="tooltip" title="攻略モードを1回完了すると利用できます">
 <button id="start_quiz_button_weak" class="size_adjust btn btn-warning btn-block btn-rounded waves-effect waves-light" onclick="start_quiz('weak')">弱点克服</button>
 </div>
-<div class="col-12">
-<button id="start_quiz_button_review" class="size_adjust btn btn-primary btn-block btn-rounded waves-effect waves-light" onclick="start_quiz('review')">ランダム出題</button>
+<div class="col-12" data-toggle="tooltip" title="攻略率が100%に到達すると利用できます">
+<button id="start_quiz_button_review" class="size_adjust btn btn-primary btn-block btn-rounded waves-effect waves-light" onclick="start_quiz('review')">総復習</button>
 </div>
 </section>
 </div><!-- / page_intro -->
 <div class="page container minh-100 card" id="page_quiz" style="display:none;">
-<section class="row card-title">
-<div class="col-10">
-<div id="question_header" class="size_adjust">
-<article class="row align-items-center">
-<div class="col-3">
-<div class="chip">
-<div id="question_count_wrapper" class="inset"><span id="position"></span>/<span id="question_count"></span></div>
+<section id="question_header" class="size_adjust">
+<article class="row align-items-center navbar mb-3">
+<div class="col-6">
+<div id="question_count_wrapper" class="inset text-muted">
+<span id="position" class="mr-1"></span>/<span id="question_count" class="ml-1"></span>
 </div>
 </div>
-<div class="col-8">
-<div class="timer_wrapper inset" data-toggle="tooltip" data-placement="bottom" title="制限時間です"><span class="timer">timer</span></div>
-<div class="progress">
-<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>
+<div id="hide_list_button" class="col-6 text-right">
+<button class="list btn btn-sm btn-primary waves-effect waves-light" onclick="show_list()" data-toggle="tooltip" data-placement="bottom" title="設問一覧ページに移動します"><i class="far fa-list-ul"></i></button>
 </div>
 </article>
-<article class="row align-items-start">
-<div class="col-4">
+<div class="col-12">
+<div class="timer_wrapper inset text-muted" data-toggle="tooltip" data-placement="bottom" title="制限時間です">
+<i class="far fa-alarm-clock mr-1"></i><span class="timer">timer</span>
+</div>
+<div class="progress">
+<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+</div>
+<article class="row align-items-center">
+<div class="col-sm-8 col-12 mb-2 mb-sm-0">
 <div id="section_name"></div>
 </div>
-<div class="col-8">
-<div class="float-right" id="seigo_count" data-toggle="tooltip" data-placement="bottom" title="回答の正誤履歴です">
+<div class="col-sm-4 col-12 text-right">
+<div id="seigo_count" class="d-inline-block" data-toggle="tooltip" data-placement="bottom" title="回答の正誤履歴です">
+<span id="correct-count">
+<i class='far fa-check-circle text-success'></i><span class="num"></span>
+</span>
+<span id="incorrect-count">
+<i class='far fa-times text-danger'></i><span class="num"></span>
+</span>
 </div>
+<div id="section_tag" class="tag_visible"></div>
+<div id="question_tag" class="tag_visible" style="margin-top: 5px;"></div>
 </div>
 </article>
-</div>
-</div>
-<div class="col-2">
-<button class="list pull-right btn btn-sm btn-primary waves-effect waves-light" onclick="show_list()" data-toggle="tooltip" data-placement="bottom" title="設問一覧ページに移動します"><i class="fa fa-list-ul" aria-hidden="true"></i></button>
-</div>
 </section>
 <section class="row card-body" style="min-height: 75%;">
 <div class="col-12" id="contents_wrapper">
@@ -163,7 +175,7 @@ $("#completion_rate_label_wrapper").height($("#doughnutChart").height() - margin
 <article class="row">
 <div class="input-field col-12">
 <input id="input_line" class="input size_adjust validate" type="text" style=""/>
-<label for="input_line">回答を入力してください。</label>
+<label for="input_line">回答を入力してください</label>
 </div>
 </article>
 </div>
@@ -171,7 +183,7 @@ $("#completion_rate_label_wrapper").height($("#doughnutChart").height() - margin
 <div class="md-form">
 <i class="fa fa-pencil prefix"></i>
 <textarea type="text" id="form-textarea" class="md-textarea" style=""></textarea>
-<label for="form-textarea">回答を入力してください。</label>
+<label for="form-textarea">回答を入力してください</label>
 </div>
 </div>
 <div id="fill_in_multi">
@@ -255,15 +267,15 @@ pulldown
 </div>
 
 <div class="speaker" style="width:0;height:0;">
-<audio id="correct_sound" src="https://quizgenerator.net/quizgen5.4.2/basic/get.mp3" preload="auto"/>
+<audio id="correct_sound" src="https://quizgenerator.net/quizgen5.6.8/basic/get.mp3" preload="auto"/>
 
 </div>
 <div class="speaker" style="width:0;height:0;">
-<audio id="incorrect_sound" src="https://quizgenerator.net/quizgen5.4.2/basic/koke.mp3" preload="auto"/>
+<audio id="incorrect_sound" src="https://quizgenerator.net/quizgen5.6.8/basic/koke.mp3" preload="auto"/>
 
 </div>
 <div class="speaker" style="width:0;height:0;">
-<audio id="dragged_sound" src="https://quizgenerator.net/quizgen5.4.2/basic/move.mp3" preload="auto"/>
+<audio id="dragged_sound" src="https://quizgenerator.net/quizgen5.6.8/basic/move.mp3" preload="auto"/>
 
 </div>
 </div>
@@ -288,16 +300,19 @@ pulldown
 </div><!-- / page_quiz -->
 
 <div class="page container minh-100 card" id="page_list" style="display:none">
-<section class="row card-title">
-<div class="col-10">
+<section class="row align-items-center navbar mb-3">
+<div class="col-6 ml-auto">
 <div id="question_header" class="size_adjust">
-<div class="timer_wrapper inset" data-toggle="tooltip" data-placement="bottom" title="制限時間です"><span class="timer">timer</span></div>
+<div class="timer_wrapper inset text-muted" data-toggle="tooltip" data-placement="bottom" title="制限時間です">
+<i class="far fa-alarm-clock mr-1"></i><span class="timer">timer</span>
+</div>
 <div class="progress">
-<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>
+<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 </div>
-<div class="col-2">
-<button class="list pull-right btn btn-sm btn-primary waves-effect waves-light" onclick="hide_list()" data-toggle="tooltip" data-placement="bottom" title="出題ページに移動します"><i class="fa fa-list-ul" aria-hidden="true"></i></button>
+</div>
+<div class="col-3 text-right">
+<button class="list btn btn-sm btn-primary waves-effect waves-light" onclick="hide_list()" data-toggle="tooltip" data-placement="bottom" title="出題ページに移動します]"><i class="fas fa-pen"></i></button>
 </div>
 </section>
 <section class="row card-body">
@@ -328,7 +343,7 @@ pulldown
 
 <div class="page container minh-100 card" id="page_suspended" style="display:none">
 <section class="row card-title">
-中断しました。
+中断しました
 </section>
 </div><!-- / page_suspended -->
 <div class="page container minh-100 card" id="page_result" style="display:none">
@@ -449,10 +464,10 @@ pulldown
 
 </body>
 
-<link rel="stylesheet" type="text/css" href="https://quizgenerator.net/quizgen5.4.2/basic/css/mdb.css"></link>
-<link rel="stylesheet" type="text/css" href="https://quizgenerator.net/quizgen5.4.2/basic/css/mdb_custom.css"></link>
-<link rel="stylesheet" type="text/css" href="https://quizgenerator.net/quizgen5.4.2/basic/css/base_style.css"></link>
-<script src="https://quizgenerator.net/quizgen5.4.2/basic/js/mdb.js"></script>
+<link rel="stylesheet" type="text/css" href="https://quizgenerator.net/quizgen5.6.8/basic/css/mdb.css"></link>
+<link rel="stylesheet" type="text/css" href="https://quizgenerator.net/quizgen5.6.8/basic/css/mdb_custom.css"></link>
+<link rel="stylesheet" type="text/css" href="https://quizgenerator.net/quizgen5.6.8/basic/css/base_style.css"></link>
+<script src="https://quizgenerator.net/quizgen5.6.8/basic/js/mdb.js"></script>
 
 
 
