@@ -2815,7 +2815,7 @@ location.href = location.href;
 var API, startTime;
 function DummyAPI() {
 
-var seed = '5f4dabe446a01ece8e4321d7288cd8d5cb4a2193';
+var seed = 'f6a93b2510e162aefbf5218ce40fab132852790d';
 this.dummy = true;
 this.Initialize = function() {
 console_log('Initialize');
